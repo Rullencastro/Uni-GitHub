@@ -1,0 +1,62 @@
+.cuerpo{
+    background-color: black;
+    color: white;
+}
+
+.logo{
+    width: 4em;
+    float:left;
+}
+
+li{
+    display: inline-block;
+    margin-right: 20px;
+    color: white;
+}
+a:active , a:visited{
+    color: white;
+}
+li:hover{
+    color: white;
+}
+
+.borde{
+    margin: 20px;
+    border: 2px solid white;
+    text-align: center;
+    padding: 20px;
+}
+
+
+
+.auxiliar{
+    float: left;
+    width: 20%;
+    height: 50%;
+}
+
+.auxiliar{
+    text-align: left;
+}
+
+.auxiliar p>span{
+    font-size: larger;
+    text-decoration: underline;
+}
+
+.events{
+    display: flex;
+    width: 69%;
+    height: 50%;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+img{
+    width: 15%;
+}
+
+
+.pie{
+    clear:both;
+}
