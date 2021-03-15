@@ -44,7 +44,7 @@ li:hover{
 
 .events{
     display: flex;
-    width: 69%;
+    width: 72%;
     height: 50%;
     flex-wrap: wrap;
     align-content: space-between;
@@ -52,7 +52,8 @@ li:hover{
 
 
 figure{
-    display: inline;
+    width: 33%;
+    height: 33%;
     text-align: center;
 }
 
