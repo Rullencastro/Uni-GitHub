@@ -13,7 +13,7 @@ li{
     margin-right: 20px;
     color: white;
 }
-a:active , a:visited{
+.opciones a:active , a:visited{
     color: white;
 }
 li:hover{
@@ -26,8 +26,6 @@ li:hover{
     text-align: center;
     padding: 20px;
 }
-
-
 
 .auxiliar{
     float: left;
@@ -52,8 +50,14 @@ li:hover{
     align-content: space-between;
 }
 
+
+figure{
+    display: inline;
+    text-align: center;
+}
+
 img{
-    width: 15%;
+    width: 10%;
 }
 
 
