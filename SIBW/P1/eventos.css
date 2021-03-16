@@ -1,0 +1,89 @@
+.cuerpo{
+    background-color: black;
+    color: white;
+}
+
+.logo{
+    width: 6em;
+    float:left;
+    padding-left: ;
+}
+
+h1 span{
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+}
+
+li{
+    display: inline-block;
+    margin-right: 20px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+.opciones a:active , a:visited ,a:link{
+    color: white;
+    text-decoration: none;
+}
+
+.opciones a:hover{
+    filter: brightness(50%);
+}
+
+li:hover{
+    color: white;
+}
+
+.borde{
+    margin: 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+}
+
+.auxiliar{
+    float: left;
+    width: 20%;
+    
+}
+
+.auxiliar{
+    text-align: left;
+}
+
+.auxiliar p>span{
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+    text-decoration: underline;
+}
+
+.evento{
+    display: flex;
+    width: 72%;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+.evento figure{
+    float:right;
+    width: 21%;
+}
+
+.evento figure img{
+    width: 200px;
+    margin-bottom:10px;
+}
+
+.evento p{
+    text-align: justify;
+}
+
+
+figcaption{
+    font-family: 'Roboto', sans-serif;
+}
+
+.pie{
+    clear:both;
+    padding: 0px;
+}
