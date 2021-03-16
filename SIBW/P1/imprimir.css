@@ -1,0 +1,66 @@
+.cuerpo{
+    background-color: white;
+    color: black;
+}
+
+.logo{
+    width: 6em;
+}
+
+h1 span{
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+}
+
+.opciones{
+    display: none;
+}
+
+.borde{
+    margin: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+}
+
+.auxiliar{
+    display: none;
+}
+
+.evento{
+    display: flex;
+    width: 72%;
+    flex-wrap: wrap;
+    align-content: space-between;
+    display: table;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.evento figure{
+    float:right;
+    width: 21%;
+}
+
+.evento figure img{
+    width: 200px;
+    margin-bottom:10px;
+    filter: grayscale(100%);
+}
+
+.evento p{
+    text-align: justify;
+}
+
+
+figcaption{
+    font-family: 'Roboto', sans-serif;
+}
+
+.pie{
+    clear:both;
+    padding: 0px;
+}

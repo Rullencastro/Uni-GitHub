@@ -56,11 +56,19 @@ li:hover{
     text-decoration: underline;
 }
 
+.auxiliar img{
+    width: 20%;
+}
+
 .evento{
     display: flex;
     width: 72%;
     flex-wrap: wrap;
     align-content: space-between;
+    display: table;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .evento figure{
