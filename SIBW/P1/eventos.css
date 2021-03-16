@@ -85,6 +85,17 @@ li:hover{
     text-align: justify;
 }
 
+.evento p>a{
+    text-decoration: underline;
+}
+
+.evento p>a:hover{
+    filter: brightness(50%);
+}
+
+.evento h1,h2,h3{
+    font-family: 'Roboto', sans-serif;}
+
 
 figcaption{
     font-family: 'Roboto', sans-serif;

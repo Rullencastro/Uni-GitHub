@@ -1,6 +1,7 @@
 .cuerpo{
     background-color: white;
     color: black;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .logo{
@@ -53,6 +54,10 @@ h1 span{
 
 .evento p{
     text-align: justify;
+}
+
+.evento p>a{
+    display: none;
 }
 
 
