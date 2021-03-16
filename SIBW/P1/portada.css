@@ -52,15 +52,20 @@ li:hover{
 
 
 figure{
-    width: 33%;
-    height: 33%;
+    width: 30%;
+    height: 30%;
     text-align: center;
+    margin: 2px;
 }
 
-img{
-    width: 10%;
+figure:hover{
+    filter: brightness(50%);   
 }
 
+figure img{
+    width: 100px;
+    height: 130px;
+}
 
 .pie{
     clear:both;
