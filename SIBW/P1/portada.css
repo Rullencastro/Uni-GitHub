@@ -4,8 +4,8 @@
 }
 
 .logo{
-    width: 6em;
-    float:left;
+    width: 3em;
+    vertical-align:-100%;
 }
 
 h1 span{
@@ -41,6 +41,7 @@ li:hover{
 }
 
 .auxiliar{
+    margin-top: 0px;
     float: left;
     width: 20%;
     
@@ -58,7 +59,7 @@ li:hover{
 
 .events{
     display: flex;
-    width: 72%;
+    width: auto;
     flex-wrap: wrap;
     align-content: space-between;
 }
@@ -88,4 +89,5 @@ figcaption{
 .pie{
     clear:both;
     padding: 0px;
+    width: auto;
 }

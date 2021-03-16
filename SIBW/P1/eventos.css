@@ -4,8 +4,8 @@
 }
 
 .logo{
-    width: 6em;
-    float:left;
+    width: 3em;
+    vertical-align:-100%;
 }
 
 h1 span{
@@ -62,18 +62,15 @@ li:hover{
 
 .evento{
     display: flex;
-    width: 72%;
+    width: auto;
     flex-wrap: wrap;
     align-content: space-between;
     display: table;
     text-align: justify;
-    margin-left: auto;
-    margin-right: auto;
 }
 
-.evento figure{
+.evento div{
     float:right;
-    width: 21%;
 }
 
 .evento figure img{

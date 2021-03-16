@@ -41,9 +41,8 @@ h1 span{
     
 }
 
-.evento figure{
+.evento div{
     float:right;
-    width: 21%;
 }
 
 .evento figure img{
