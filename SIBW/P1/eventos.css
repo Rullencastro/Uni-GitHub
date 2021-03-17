@@ -1,8 +1,19 @@
+
+/*--General--*/
 .cuerpo{
     background-color: black;
     color: white;
 }
 
+.borde{
+    margin: 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+}
+
+/*--Cabecera--*/
 .logo{
     width: 3em;
     vertical-align:-100%;
@@ -32,17 +43,11 @@ li:hover{
     color: white;
 }
 
-.borde{
-    margin: 20px;
-    border: 2px solid white;
-    border-radius: 10px;
-    text-align: center;
-    padding: 20px;
-}
-
+/*--Elementos Auxiliares--*/
 .auxiliar{
     float: left;
     width: 20%;
+    margin-top: 0px;
     
 }
 
@@ -60,6 +65,7 @@ li:hover{
     width: 20%;
 }
 
+/*--Evento--*/
 .evento{
     display: flex;
     width: auto;
@@ -98,6 +104,7 @@ figcaption{
     font-family: 'Roboto', sans-serif;
 }
 
+/*--Pie de página--*/
 .pie{
     clear:both;
     padding: 0px;
