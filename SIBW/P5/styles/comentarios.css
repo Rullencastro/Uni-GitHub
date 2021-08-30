@@ -1,0 +1,164 @@
+/*--General--*/
+.cuerpo{
+    background-color: black;
+    color: white;
+}
+
+.borde{
+    margin: 20px;
+    border: 2px solid white;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+}
+
+/*--Cabecera--*/
+.logo{
+    width: 3em;
+    vertical-align:-100%;
+}
+
+.login{
+    width: 3em;
+    vertical-align:-100%;
+}
+
+.login:hover{
+    filter: brightness(50%);
+}
+
+h1 span{
+    font-family: 'Roboto', sans-serif;
+    font-size: 2em;
+}
+
+ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#busq{
+    filter: brightness(50%);
+    font-family: 'Roboto', sans-serif;
+}
+
+.results:hover{
+    filter: brightness(50%);
+}
+
+li,.results{
+    display: inline-block;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+.opciones a:active , a:visited ,a:link{
+    color: white;
+    text-decoration: none;
+}
+
+.opciones a:hover{
+    filter: brightness(50%);
+}
+
+li:hover{
+    color: white;
+}
+
+/*--Elementos Auxiliares--*/
+.auxiliar{
+    display: none;
+}
+
+
+/*--Bloque inicio y registro--*/
+.comentarios{
+    display: flex;
+    width: auto;
+    flex-wrap: nowrap;
+    align-content: space-between;
+    text-align: justify;
+}
+
+
+/*--Formulario Inicio sesion--*/
+h1{
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
+input{
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 200px;
+    height: 30px;
+}
+
+input:hover{
+    filter: brightness(50%);
+}
+
+#edit,#info,#list{
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+#info{
+    width: 30%;
+}
+
+#list{
+    width: 35%;
+    height: 90%;
+}
+
+#lista{
+    height: 300px;
+    overflow:auto;
+}
+
+textarea{
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    width: 200px;
+    height: 100px;
+}
+
+.nf{
+    font-family: 'Roboto', sans-serif;
+    font-size: larger;
+    color:gray;
+}
+
+.txtcom{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+}
+
+.edicion{
+    width: 1em;
+}
+
+.edicion:hover{
+    filter: brightness(50%);
+}
+
+.editado{
+    font-size: small;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+    color:antiquewhite;
+}
+
+.error{
+    color: red;
+}
+
+
+/*--Pie de página--*/
+.pie{
+    clear:both;
+    padding: 0px;
+}
