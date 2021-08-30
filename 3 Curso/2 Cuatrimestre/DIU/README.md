@@ -1,0 +1,1 @@
+Para ver todas las prácticas realizadas de DIU, ir al siguiente repositorio: https://github.com/raulrguez09/DIU21
