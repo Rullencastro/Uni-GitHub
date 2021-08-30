@@ -1,0 +1,31 @@
+{% extends "padre.html" %}
+
+{% block estilo %}
+	<link rel="stylesheet" href="styles/usuario.css"/>
+{% endblock %}
+
+
+{% block eventos %}
+    <section class="borde inicio">
+    <div id="inic">
+        <h1>Iniciar Sesión</h1>
+        <form action="usuario.php"  method="post">
+            <input type="text" name="user" placeholder="Nombre De Usuario"><br><br>
+            <input type="password" name="pass" placeholder="Contraseña"><br><br>
+            <input type="submit" name="inicioButton" value="Entrar">
+        </form>
+    </div>
+    <div id="regist">
+        <h1>Registro en la Página</h1>
+        <form action="usuario.php" method="post">
+            <input type="text" name="username" placeholder="Nombre De Usuario"><br><br>
+            <input type="text" name="nombre" placeholder="Nombre Completo"><br><br>
+            <input type="password" name="password" placeholder="Contraseña"><br><br>
+            <input type="text" name="email" placeholder="E-Mail"><br><br>
+            <input type="submit" name="registroButton" value="Registrarse">
+        </form>
+    </div>
+    {% for er in errores %}	
+        <p class="error">{{ er }}</p>
+    {% endfor %}
+{% endblock %}

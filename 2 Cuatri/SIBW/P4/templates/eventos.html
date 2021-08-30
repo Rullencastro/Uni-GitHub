@@ -1,0 +1,81 @@
+{% extends "padre.html" %}
+
+	{% block head %}
+		{{ parent() }}
+		{% block estilo %}
+			<link rel="stylesheet" href="/styles/eventos.css"/>
+		{% endblock %}
+			<script src="/templates/comentarios.js"></script>
+    {% endblock %}
+				
+	{% block auxiliar %}
+		{{ parent() }}
+        <a href="{{ evento['facebook'] }}"><img src="/imgs/facebook.jpg" alt="facebook"></a>
+        <a href="{{ evento['twitter'] }}"><img src="/imgs/twitter.jpg" alt="twitter"></a>
+        <a href="/imprimir/{{ evento['id'] }}"><img src="/imgs/imprimir.jpg" alt="imprimir"></a>
+	{% endblock %}
+				
+				
+	{% block eventos %}
+		<section class="borde evento">
+            <div>
+				{% if user.tipo == 2 or user.tipo == 3 %}
+				<form action="" method="post" id="editDelete">
+					<button type="submit" name="editarEvButton"><img class="edicion" src="/imgs/lapiz.jpg"></button>
+					<button type="submit" name="borrarEvButton"><img class="edicion" src="/imgs/borrar.jpg"></button>
+				</form>
+				{% endif %}
+				{% for img in imgs %}
+                <figure>
+                    <img src="/{{ img['img'] }}" alt="foto">
+                    <figcaption>{{ img['texto'] }}</figcaption>
+                </figure>
+				{% endfor %}
+			</div>    
+            <h1>{{ evento['titulo'] }}</h1>
+            <h2>{{ evento['subtitulo'] }}</h2>
+            <h3>{{ evento['fecha'] }}</h3>
+            <p>{{ evento['texto'] | raw }} <a href="{{ evento['enlace'] }}">{{ evento['textoEnlace'] }}</a></p>
+
+			{% if etiquetas%}
+			<div class="etiqs">
+				<ul id="etq">
+					<li>Tags:</li>
+				{% for et in etiquetas %}
+					<li class="ets">{{et.etiq}}</li>
+				{% endfor %}
+				</ul>
+			</div>
+			{% endif %}
+					
+			<input id="mostrar" type="button" value="Mostrar comentarios" onclick="mostrarComentarios()">
+			<div class="comentarios" id="comentarios">
+				{% if user  %}
+					{% if user.tipo == 0 or user.tipo == 3 %}
+				<form action="" name="myForm" method="post">
+					<input type="text" name="ev" value="{{ evento['id'] }}" style="display: none;"><br><br>
+					<textarea type="text" name="comText" id="fcom" placeholder="Comentario..." onkeyup="filtroPalabras()"></textarea><br><br>
+					<input type="submit" name="comentarButton" value="Comentar" onclick="validateForm()">
+				</form>
+					{% endif %}	
+				{% endif %}	
+				<div id="coms">
+					{% for com in coment %}
+						{% if user.tipo == 1 or user.tipo == 3 %}
+							<p class="nf">{{ com['nombre'] }} comentó el {{ com['fecha'] }} a las {{ com['hora'] }} <a href="/comentarios/{{ com['id'] }}"><img class="edicion" src="/imgs/lapiz.jpg" alt="editar"/></a> <a href="/borrarComentario.php?idCom={{ com['id'] }}&ev={{ evento['id'] }}"><img class="edicion" src="/imgs/borrar.jpg" alt="editar"/></a></p>
+						{% else %}
+							<p class="nf">{{ com['nombre'] }} comentó el {{ com['fecha'] }} a las {{ com['hora'] }} </p>
+						{% endif %}
+    					<p class="txtcom">{{ com['comentario'] }}</p>
+						{% if com['editado'] == true %}
+							<p class="editado">Mensaje editado por el Moderador</p>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+	{% endblock %}	
+                
+									
+				
+
+
