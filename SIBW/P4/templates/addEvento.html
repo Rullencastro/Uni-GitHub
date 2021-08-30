@@ -1,0 +1,45 @@
+{% extends "padre.html" %}
+
+{% block estilo %}
+    <link rel="stylesheet" href="/styles/addEvento.css"/>
+{% endblock %}
+
+{% block eventos %}
+    <section class="borde anadir">
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="datos">
+            <div class="textos">
+                <input type="text" name="titulo" placeholder="Titulo">
+                <input type="text" name="subtitulo" placeholder="Subtitulo">
+                <input type="text" name="fecha" placeholder="Fecha">
+            </div>
+            <textarea type="text" name="textoEvento" placeholder="Info del Evento" ></textarea>
+            <div class="textos">
+                <input type="text" name="enlace" placeholder="Enlace">
+                <input type="text" name="textoEnlace" placeholder="Texto para enlace">
+                <input type="text" name="twitter" placeholder="Twitter">
+                <input type="text" name="facebook" placeholder="Facebook">
+            </div>
+            <div class="textos">
+                {% for i in 0..3 %}
+                    <input type="text" name="etiq{{i}}" placeholder="Etiqueta {{i+1}}(Opcional)">
+                {% endfor %}
+            </div>
+            <input type="submit" name="addEventButton" value="Añadir Evento">
+        </div>
+
+        <div class="imagenes">
+            {% for i in 0..3 %}
+                <input type="file" name="img{{i}}" class="imgs">
+                {% if i== 0 %}
+                <p>Imagen de Portada <input type="text" name="text{{i}}" placeholder="Texto Imagen" style="width: 30%;"></p><br>
+                {% else %}
+                <p>Imagen de evento(opcional) {{i}} <input type="text" name="text{{i}}" placeholder="Texto Imagen" style="width: 30%;"></p><br>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </form>
+    {% for er in errores %}	
+        <p class="error">{{ er }}</p>
+    {% endfor %}
+{% endblock %}

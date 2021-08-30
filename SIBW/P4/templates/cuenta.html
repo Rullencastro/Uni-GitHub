@@ -1,0 +1,41 @@
+{% extends "padre.html" %}
+
+{% block estilo %}
+	<link rel="stylesheet" href="/styles/cuenta.css"/>
+{% endblock %}
+
+
+{% block eventos %}
+    <section class="borde cuenta">
+    <div id=datos>
+        <h1>Datos Personales</h1>
+        <p class="pers"><span>Nickname:</span> {{ user.nick }}</p>
+        <p class="pers"><span>Nombre Completo:</span> {{ user.nombre }}</p>
+        <p  class="pers"><span>E-Mail:</span> {{ user.email }}</p>
+        {% if user.tipo == 0 %}
+            <p class="pers"><span>Tipo de Privilegios: </span>Normal</p>
+        {% elseif user.tipo == 1 %}
+            <p class="pers"><span>Tipo de Privilegios: </span>Moderador</p>
+        {% endif %}
+    </div>
+    <div id="modif">
+        <h1>Modificar Datos</h1>
+        <form action="cuenta.php"  method="post">
+            <input type="text" name="userM" placeholder="Nombre De Usuario"><br><br>
+            <input type="text" name="nombreM" placeholder="Nombre Completo"><br><br>
+            <input type="password" name="passwordM" placeholder="Contraseña"><br><br>
+            <input type="text" name="emailM" placeholder="E-Mail"><br><br>
+            <input type="submit" name="modificarButton" value="Modificar">
+        </form>
+    </div>
+    <div id="elim">
+        <h1>Eliminar Cuenta</h1>
+        <form action="cuenta.php" method="post">
+            <input type="text" name="delete" placeholder="Escribe 'BORRAR' para eliminar"><br><br>
+            <input type="submit" name="eliminarButton" value="Eliminar">
+        </form>
+    </div>
+    {% for er in errores %}	
+        <p class="error">{{ er }}</p>
+    {% endfor %}						
+{% endblock %}
