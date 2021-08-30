@@ -1,0 +1,54 @@
+{% extends "padre.html" %}
+
+	{% block head %}
+		{{ parent() }}
+		{% block estilo %}
+			<link rel="stylesheet" href="styles/eventos.css" />
+		{% endblock %}
+			<script src="templates/comentarios.js"></script>
+    {% endblock %}
+				
+	{% block auxiliar %}
+		{{ parent() }}
+        <a href="{{ evento['facebook'] }}"><img src="/imgs/facebook.jpg" alt="facebook"></a>
+        <a href="{{ evento['twitter'] }}"><img src="/imgs/twitter.jpg" alt="twitter"></a>
+        <a href="imprimir.php?ev=1"><img src="/imgs/imprimir.jpg" alt="imprimir"></a>
+	{% endblock %}
+				
+				
+	{% block eventos %}
+		<section class="borde evento">
+            <div>
+				{% for img in imgs %}
+                <figure>
+                    <img src="/{{ img['img'] }}" alt="foto">
+                    <figcaption>{{ img['texto'] }}</figcaption>
+                </figure>
+				{% endfor %}
+			</div>    
+            <h1>{{ evento['titulo'] }}</h1>
+            <h2>{{ evento['subtitulo'] }}</h2>
+            <h3>{{ evento['fecha'] }}</h3>
+            <p>{{ evento['texto'] }} <a href="{{ evento['enlace'] }}">{{ evento['textoEnlace'] }}</a></p>
+					
+			<input id="mostrar" type="button" value="Mostrar comentarios" onclick="mostrarComentarios()">
+			<div class="comentarios" id="comentarios">
+				<form name="myForm"  method="post">
+					<input type="text" id="fname" placeholder="Nombre Completo..."><br><br>
+					<input type="text" id="ft" placeholder="E-Mail..."><br><br>
+					<textarea type="text" id="fcom" placeholder="Comentario..." onkeyup="filtroPalabras()"></textarea><br><br>
+					<input type="button" value="Comentar" onclick="validateForm()">
+				</form>
+				<div id="coms">
+					{% for com in coment %}
+					<p class="nf">{{ com['nombre'] }} comentó el {{ com['fecha'] }} a las {{ com['hora'] }}</p>
+    				<p class="txtcom">{{ com['comentario'] }}</p>
+					{% endfor %}
+				</div>
+			</div>
+	{% endblock %}	
+                
+									
+				
+
+
