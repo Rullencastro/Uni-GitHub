@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+
+
+<category>
+    <pattern>FORMATO *</pattern>
+  <template>
+    <think>
+    <set var="dia"><map name="dias"><srai>ITERATE <star/></srai></map></set>
+    <set var="mes"><map name="month_index_ES"><srai>NEXT</srai></map></set>
+    </think>
+    <get var="dia"/>-<get var="mes"/>-<srai>NEXT</srai>
+  </template>
+</category>
+
+
+  <category>
+      <pattern>^ (cita) ^ el (dia) * (de) * (de+) * </pattern>
+      <template>
+      <think>
+        <set name="fecha"><map name="dias"><star index="3"/></map>-<map name="month_index_ES"><star index="4"/></map>-<star index="5"/></set>
+      </think>
+        <srai>esta libre el dia <get name="fecha"/></srai>
+      </template>
+  </category>
+
+  <category>
+      <pattern>^ (cita) ^ el (dia) * (de) * (de+) * (por) (la) tarde ^</pattern>
+      <template>
+      <think>
+        <set name="fecha"><map name="dias"><star index="3"/></map>-<map name="month_index_ES"><star index="4"/></map>-<star index="5"/></set>
+      </think>
+        <srai>esta libre el dia tarde <get name="fecha"/></srai>
+      </template>
+  </category>
+
+  <category>
+      <pattern>^ (cita) ^ el (dia) * (de) * (de+) * (por) (la) mañana ^</pattern>
+      <template>
+      <think>
+        <set name="fecha"><map name="dias"><star index="3"/></map>-<map name="month_index_ES"><star index="4"/></map>-<star index="5"/></set>
+      </think>
+        <srai>esta libre el dia mañana <get name="fecha"/></srai>
+      </template>
+  </category>
+
+  <category>
+      <pattern>^ (cita) ^ el (dia) * (de) * (de+) * (a) (las) <set>hours_00</set> ^</pattern>
+      <template>
+      <think>
+        <set name="fecha"><map name="dias"><star index="3"/></map>-<map name="month_index_ES"><star index="4"/></map>-<star index="5"/></set>
+        <set var="ocup"><srai>IS BUSY DAY <get name="fecha"/> AT <star index="6"/></srai></set>
+      </think>
+      <condition var="ocup">
+        <li value="TRUE">Lo sentimos, pero ese día a esa hora está ocupado ¿Quiere que le mire otro día?
+          <think><set name="topic">otra</set></think>
+        </li>
+        <li>
+          <srai>MARK OCUPADO AT <star index="6"/> ON <get name="fecha"/></srai>
+          Perfecto, pues a las <star index="6"/> el día <get name="fecha"/> tiene su cita
+          ¿Quiere otra cita aparte de esta? <think><set name="topic">otra</set></think>
+        </li>
+      </condition>
+      </template>
+  </category>
+
+  <category>
+      <pattern>^ (cita) ^ el (dia) * (de) * (de+) * (a) (las) <set>hours</set> ^</pattern>
+      <template>
+      <think>
+        <set var="hora"><map name="horas"><star index="6"/></map>:00</set>
+        <set name="fecha"><map name="dias"><star index="3"/></map>-<map name="month_index_ES"><star index="4"/></map>-<star index="5"/></set>
+        <set var="ocup"><srai>IS BUSY DAY <get name="fecha"/> AT <get var="hora"/></srai></set>
+      </think>
+      <condition var="ocup">
+        <li value="TRUE">Lo sentimos, pero ese día a esa hora está ocupado ¿Quiere que le mire otro día?
+          <think><set name="topic">otra</set></think>
+        </li>
+        <li>
+          <srai>MARK OCUPADO AT <get var="hora"/> ON <get name="fecha"/></srai>
+          Perfecto, pues a las <get var="hora"/> el día <get name="fecha"/> tiene su cita
+          ¿Quiere otra cita aparte de esta? <think><set name="topic">otra</set></think>
+        </li>
+      </condition>
+      </template>
+  </category>
+
+  <category>
+      <pattern>^ (cita) ^ el (dia) * (de) * </pattern>
+      <template>
+      <think>
+        <set name="fecha"><map name="dias"><star index="3"/></map>-<map name="month_index_ES"><star index="4"/></map>-20</set>
+      </think>
+        <srai>esta libre el dia <get name="fecha"/></srai>
+      </template>
+  </category>
+
+  <category>
+      <pattern>^ (cita) ^ el (dia) * (de) * (por) (la) tarde ^</pattern>
+      <template>
+      <think>
+        <set name="fecha"><map name="dias"><star index="3"/></map>-<map name="month_index_ES"><star index="4"/></map>-20</set>
+      </think>
+        <srai>esta libre el dia tarde <get name="fecha"/></srai>
+      </template>
+  </category>
+
+  <category>
+      <pattern>^ (cita) ^ el (dia) * (de) * (por) (la) mañana ^</pattern>
+      <template>
+      <think>
+        <set name="fecha"><map name="dias"><star index="3"/></map>-<map name="month_index_ES"><star index="4"/></map>-20</set>
+      </think>
+        <srai>esta libre el dia mañana <get name="fecha"/></srai>
+      </template>
+  </category>
+
+  <category>
+      <pattern>^ (cita) ^ el (dia) * (de) * (a) (las) <set>hours_00</set> ^</pattern>
+      <template>
+      <think>
+        <set name="fecha"><map name="dias"><star index="3"/></map>-<map name="month_index_ES"><star index="4"/></map>-20</set>
+        <set var="ocup"><srai>IS BUSY DAY <get name="fecha"/> AT <star index="5"/></srai></set>
+      </think>
+      <condition var="ocup">
+        <li value="TRUE">Lo sentimos, pero ese día a esa hora está ocupado ¿Quiere que le mire otro día?
+          <think><set name="topic">otra</set></think>
+        </li>
+        <li>
+          <srai>MARK OCUPADO AT <star index="5"/> ON <get name="fecha"/></srai>
+          Perfecto, pues a las <star index="5"/> el día <get name="fecha"/> tiene su cita
+          ¿Quiere otra cita aparte de esta? <think><set name="topic">otra</set></think>
+        </li>
+      </condition>
+      </template>
+  </category>
+
+  <category>
+      <pattern>^ (cita) ^ el (dia) * (de) * (a) (las) <set>hours</set> ^</pattern>
+      <template>
+      <think>
+        <set var="hora"><map name="horas"><star index="5"/></map>:00</set>
+        <set name="fecha"><map name="dias"><star index="3"/></map>-<map name="month_index_ES"><star index="4"/></map>-20</set>
+        <set var="ocup"><srai>IS BUSY DAY <get name="fecha"/> AT <get var="hora"/></srai></set>
+      </think>
+      <condition var="ocup">
+        <li value="TRUE">Lo sentimos, pero ese día a esa hora está ocupado ¿Quiere que le mire otro día?
+          <think><set name="topic">otra</set></think>
+        </li>
+        <li>
+          <srai>MARK OCUPADO AT <get var="hora"/> ON <get name="fecha"/></srai>
+          Perfecto, pues a las <get var="hora"/> el día <get name="fecha"/> tiene su cita
+          ¿Quiere otra cita aparte de esta? <think><set name="topic">otra</set></think>
+        </li>
+      </condition>
+      </template>
+  </category>
+
+<category>
+  <pattern>^ (cita) ^ mañana ^</pattern>
+  <template>
+    <think>
+      <set name="fecha"><srai>formato <srai>DATE TOMORROW</srai></srai></set>
+    </think>
+    <srai>Esta libre el dia <get name="fecha"/></srai>
+</template>
+</category>
+
+<category>
+  <pattern>^ (cita) ^ mañana ^ por la tarde ^</pattern>
+  <template>
+    <think>
+      <set name="fecha"><srai>formato <srai>DATE TOMORROW</srai></srai></set>
+    </think>
+    <srai>Esta libre el dia tarde <get name="fecha"/></srai>
+</template>
+</category>
+
+<category>
+  <pattern>^ (cita) ^ mañana ^ (por) (la) mañana ^</pattern>
+  <template>
+    <think>
+      <set name="fecha"><srai>formato <srai>DATE TOMORROW</srai></srai></set>
+    </think>
+    <srai>Esta libre el dia mañana <get name="fecha"/></srai>
+</template>
+</category>
+
+<category>
+  <pattern>^ (cita) ^ mañana ^ (a) (las) <set>hours_00</set> ^</pattern>
+  <template>
+    <think>
+      <set name="fecha"><srai>formato <srai>DATE TOMORROW</srai></srai></set>
+      <set var="ocup"><srai>IS BUSY DAY <get name="fecha"/> AT <star index="4"/></srai></set>
+    </think>
+    <condition var="ocup">
+      <li value="TRUE">Lo sentimos, pero ese día a esa hora está ocupado ¿Quiere que le mire otro día?
+        <think><set name="topic">otra</set></think>
+      </li>
+      <li>
+        <srai>MARK OCUPADO AT <star index="4"/> ON <get name="fecha"/></srai>
+        Perfecto, pues a las <star index="4"/> el día <get name="fecha"/> tiene su cita
+        ¿Quiere otra cita aparte de esta? <think><set name="topic">otra</set></think>
+      </li>
+    </condition>
+</template>
+</category>
+
+<category>
+  <pattern>^ (cita) ^ mañana ^ (a) (las) <set>hours</set> ^</pattern>
+  <template>
+    <think>
+      <set var="hora"><map name="horas"><star index="4"/></map>:00</set>
+      <set name="fecha"><srai>formato <srai>DATE TOMORROW</srai></srai></set>
+      <set var="ocup"><srai>IS BUSY DAY <get name="fecha"/> AT <get var="hora"/></srai></set>
+    </think>
+    <condition var="ocup">
+      <li value="TRUE">Lo sentimos, pero ese día a esa hora está ocupado ¿Quiere que le mire otro día?
+        <think><set name="topic">otra</set></think>
+      </li>
+      <li>
+        <srai>MARK OCUPADO AT <get var="hora"/> ON <get name="fecha"/></srai>
+        Perfecto, pues a las <get var="hora"/> el día <get name="fecha"/> tiene su cita
+        ¿Quiere otra cita aparte de esta? <think><set name="topic">otra</set></think>
+      </li>
+    </condition>
+</template>
+</category>
+
+<category>
+  <pattern>^ (cita) ^ hoy ^</pattern>
+  <template>
+    <think>
+      <set name="fecha"><srai>formato <srai>DATE</srai></srai></set>
+    </think>
+    <srai>Esta libre el dia <get name="fecha"/></srai>
+</template>
+</category>
+
+<category>
+  <pattern>^ (cita) ^ hoy ^ (por) (la) tarde ^</pattern>
+  <template>
+    <think>
+      <set name="fecha"><srai>formato <srai>DATE</srai></srai></set>
+    </think>
+    <srai>Esta libre el dia tarde <get name="fecha"/></srai>
+</template>
+</category>
+
+<category>
+  <pattern>^ (cita) ^ hoy ^ (por) (la) mañana ^</pattern>
+  <template>
+    <think>
+      <set name="fecha"><srai>formato <srai>DATE</srai></srai></set>
+    </think>
+    <srai>Esta libre el dia mañana <get name="fecha"/></srai>
+</template>
+</category>
+
+<category>
+  <pattern>^ (cita) ^ hoy ^ (a) (las) <set>hours_00</set>  ^</pattern>
+  <template>
+    <think>
+      <set name="fecha"><srai>formato <srai>DATE</srai></srai></set>
+      <set var="ocup"><srai>IS BUSY DAY <get name="fecha"/> AT <star index="4"/></srai></set>
+    </think>
+    <condition var="ocup">
+      <li value="TRUE">Lo sentimos, pero ese día a esa hora está ocupado ¿Quiere que le mire otro día?
+        <think><set name="topic">otra</set></think>
+      </li>
+      <li>
+        <srai>MARK OCUPADO AT <star index="4"/> ON <get name="fecha"/></srai>
+        Perfecto, pues a las <star index="4"/> el día <get name="fecha"/> tiene su cita
+        ¿Quiere otra cita aparte de esta? <think><set name="topic">otra</set></think>
+      </li>
+    </condition>
+</template>
+</category>
+
+<category>
+  <pattern>^ (cita) ^ hoy ^ (a) (las) <set>hours</set>  ^</pattern>
+  <template>
+    <think>
+      <set var="hora"><map name="horas"><star index="4"/></map>:00</set>
+      <set name="fecha"><srai>formato <srai>DATE</srai></srai></set>
+      <set var="ocup"><srai>IS BUSY DAY <get name="fecha"/> AT <get var="hora"/></srai></set>
+    </think>
+    <condition var="ocup">
+      <li value="TRUE">Lo sentimos, pero ese día a esa hora está ocupado ¿Quiere que le mire otro día?
+        <think><set name="topic">otra</set></think>
+      </li>
+      <li>
+        <srai>MARK OCUPADO AT <get var="hora"/> ON <get name="fecha"/></srai>
+        Perfecto, pues a las <get var="hora"/> el día <get name="fecha"/> tiene su cita
+        ¿Quiere otra cita aparte de esta? <think><set name="topic">otra</set></think>
+      </li>
+    </condition>
+</template>
+</category>
+
+<category>
+<pattern>^ (cita) ^ pasado (mañana) ^</pattern>
+<template>
+  <think>
+    <set name="fecha"><srai>formato <srai>DAYAFTERTOMORROWDATE</srai></srai></set>
+  </think>
+    <srai>Esta libre el dia <get name="fecha"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ (cita) ^ pasado (mañana) ^ (por) (la) tarde ^</pattern>
+<template>
+  <think>
+    <set name="fecha"><srai>formato <srai>DAYAFTERTOMORROWDATE</srai></srai></set>
+  </think>
+  <srai>Esta libre el dia tarde <get name="fecha"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ (cita) ^ pasado (mañana) ^ (por) (la) mañana ^</pattern>
+<template>
+  <think>
+    <set name="fecha"><srai>formato <srai>DAYAFTERTOMORROWDATE</srai></srai></set>
+  </think>
+  <srai>Esta libre el dia mañana <get name="fecha"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ (cita) ^ pasado (mañana) ^ (a) (las) <set>hours_00</set> ^</pattern>
+<template>
+  <think>
+    <set name="fecha"><srai>formato <srai>DAYAFTERTOMORROWDATE</srai></srai></set>
+    <set var="ocup"><srai>IS BUSY DAY <get name="fecha"/> AT <star index="4"/></srai></set>
+  </think>
+  <condition var="ocup">
+    <li value="TRUE">Lo sentimos, pero ese día a esa hora está ocupado ¿Quiere que le mire otro día?
+      <think><set name="topic">otra</set></think>
+    </li>
+    <li>
+      <srai>MARK OCUPADO AT <star index="4"/> ON <get name="fecha"/></srai>
+      Perfecto, pues a las <star index="4"/> el día <get name="fecha"/> tiene su cita
+      ¿Quiere otra cita aparte de esta? <think><set name="topic">otra</set></think>
+    </li>
+  </condition>
+</template>
+</category>
+
+<category>
+<pattern>^ (cita) ^ pasado (mañana) ^ (a) (las) <set>hours</set> ^</pattern>
+<template>
+  <think>
+    <set var="hora"><map name="horas"><star index="4"/></map>:00</set>
+    <set name="fecha"><srai>formato <srai>DAYAFTERTOMORROWDATE</srai></srai></set>
+    <set var="ocup"><srai>IS BUSY DAY <get name="fecha"/> AT <get var="hora"/></srai></set>
+  </think>
+  <condition var="ocup">
+    <li value="TRUE">Lo sentimos, pero ese día a esa hora está ocupado ¿Quiere que le mire otro día?
+      <think><set name="topic">otra</set></think>
+    </li>
+    <li>
+      <srai>MARK OCUPADO AT <get var="hora"/> ON <get name="fecha"/></srai>
+      Perfecto, pues a las <get var="hora"/> el día <get name="fecha"/> tiene su cita
+      ¿Quiere otra cita aparte de esta? <think><set name="topic">otra</set></think>
+    </li>
+  </condition>
+</template>
+</category>
+
+<category>
+  <pattern>^ (cita) ^ (proximo) (siguiente) ^ <set>weekday_es</set> ^</pattern>
+  <template>
+  <think>
+    <set name="fecha"><srai>formato <srai>DATE ON <star index="4"/></srai></srai></set>
+  </think>
+    <srai>Esta libre el dia <get name="fecha"/></srai>
+</template>
+</category>
+
+<category>
+  <pattern>^ (cita) ^ (proximo) (siguiente) ^ <set>weekday_es</set> ^ por la tarde ^</pattern>
+  <template>
+    <think>
+      <set name="fecha"><srai>formato <srai>DATE ON <star index="4"/></srai></srai></set>
+    </think>
+      <srai>Esta libre el dia tarde <get name="fecha"/></srai>
+</template>
+</category>
+
+<category>
+  <pattern>^ (cita) ^ (proximo) (siguiente) ^ <set>weekday_es</set> ^ por la mañana ^</pattern>
+  <template>
+    <think>
+      <set name="fecha"><srai>formato <srai>DATE ON <star index="4"/></srai></srai></set>
+    </think>
+      <srai>Esta libre el dia mañana <get name="fecha"/></srai>
+</template>
+</category>
+
+<category>
+  <pattern>^ (cita) ^ (proximo) (siguiente) ^ <set>weekday_es</set> ^ (a) (las) <set>hours_00</set> ^</pattern>
+  <template>
+    <think>
+      <set name="fecha"><srai>formato <srai>DATE ON <star index="4"/></srai></srai></set>
+      <set var="ocup"><srai>IS BUSY DAY <get name="fecha"/> AT <star index="6"/></srai></set>
+    </think>
+      <condition var="ocup">
+        <li value="TRUE">Lo sentimos, pero ese día a esa hora está ocupado ¿Quiere que le mire otro día?
+          <think><set name="topic">otra</set></think>
+        </li>
+        <li>
+          <srai>MARK OCUPADO AT <star index="6"/> ON <get name="fecha"/></srai>
+          Perfecto, pues a las <star index="6"/> el día <get name="fecha"/> tiene su cita
+          ¿Quiere otra cita aparte de esta? <think><set name="topic">otra</set></think>
+        </li>
+      </condition>
+</template>
+</category>
+
+<category>
+  <pattern>^ (cita) ^ (proximo) (siguiente) ^ <set>weekday_es</set> ^ (a) (las) <set>hours</set> ^</pattern>
+  <template>
+    <think>
+      <set name="fecha"><srai>formato <srai>DATE ON <star index="4"/></srai></srai></set>
+      <set var="ocup"><srai>IS BUSY DAY <get name="fecha"/> AT <star index="6"/></srai></set>
+    </think>
+      <condition var="ocup">
+        <li value="TRUE">Lo sentimos, pero ese día a esa hora está ocupado ¿Quiere que le mire otro día?
+          <think><set name="topic">otra</set></think>
+        </li>
+        <li>
+          <srai>MARK OCUPADO AT <star index="6"/> ON <get name="fecha"/></srai>
+          Perfecto, pues a las <star index="6"/> el día <get name="fecha"/> tiene su cita
+          ¿Quiere otra cita aparte de esta? <think><set name="topic">otra</set></think>
+        </li>
+      </condition>
+</template>
+</category>
+
+
+
+
+
+</aiml>

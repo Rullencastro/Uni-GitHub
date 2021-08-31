@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<aiml>
+  <category>
+      <pattern>^ [hola buenas] ^</pattern>
+      <template>Buenas, esta contactando con la Clinica el Salvador,digame para que dia quiere la cita</template>
+  </category>
+
+<!--Regla 1 -->
+<category>
+    <pattern>HORAS LIBRES MAÑANA * </pattern>
+    <template>
+    <think>
+    <set var="franjas"><srai>list of day <star/></srai></set>
+    <set var="franjas"><srai>sublist from 9 to 13 of <get var="franjas"/></srai></set>
+    <set var="contador">1</set>
+    <set name="libres"></set>
+    <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+    </think>
+    <condition var="item">
+        <li value="$"><get name="libres"/></li>
+        <li value="null">
+          <think>
+            <set name="libres"><get name="libres"/> <map name="horas"><srai>suma <get var="contador"/> 7</srai></map>:00</set>
+            <set var="contador"><map name="successor"><get var="contador"/></map></set>
+            <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+            </think>
+          <loop/>
+        </li>
+        <li>
+          <think>
+          <set var="contador"><map name="successor"><get var="contador"/></map></set>
+          <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+          </think>
+        <loop/>
+        </li>
+      </condition>
+    </template>
+</category>
+
+<!--Regla 2 -->
+<category>
+    <pattern>HORAS LIBRES TARDE * </pattern>
+    <template>
+    <think>
+    <set var="franjas"><srai>list of day <star/></srai></set>
+    <set var="franjas"><srai>sublist from 13 to 20 of <get var="franjas"/></srai></set>
+    <set var="contador">1</set>
+    <set name="libres"></set>
+    <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+    </think>
+    <condition var="item">
+        <li value="$"><get name="libres"/></li>
+        <li value="null">
+          <think>
+            <set name="libres"><get name="libres"/> <map name="horas"><srai>suma <get var="contador"/> 11</srai></map>:00</set>
+            <set var="contador"><map name="successor"><get var="contador"/></map></set>
+            <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+            </think>
+          <loop/>
+        </li>
+        <li>
+          <think>
+          <set var="contador"><map name="successor"><get var="contador"/></map></set>
+          <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+          </think>
+        <loop/>
+        </li>
+      </condition>
+    </template>
+</category>
+
+<!--Regla 3 -->
+<category>
+    <pattern>HORAS LIBRES * </pattern>
+    <template>
+      <think>
+        <set var="franjas"><srai>list of day <star/></srai></set>
+        <set var="franjas"><srai>sublist from 9 to 20 of <get var="franjas"/></srai></set>
+        <set var="contador">1</set>
+        <set name="libres"></set>
+        <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+      </think>
+
+    <condition var="item">
+      <li value="$"><get name="libres"/></li>
+      <li value="null">
+        <think>
+          <set name="libres"><get name="libres"/> <map name="horas"><srai>suma <get var="contador"/> 7</srai></map>:00</set>
+          <set var="contador"><map name="successor"><get var="contador"/></map></set>
+          <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+          </think>
+        <loop/>
+        </li>
+      <li>
+        <think>
+        <set var="contador"><map name="successor"><get var="contador"/></map></set>
+        <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+        </think>
+      <loop/>
+      </li>
+    </condition>
+  </template>
+</category>
+
+
+<!--Regla 4 -->
+<category>
+    <pattern>ESTA LIBRE EL DIA * </pattern>
+    <template>
+      Deme un momento que se lo miro
+      <think>
+      <set var="franjas"><srai>list of day <star/></srai></set>
+      <set var="franjas"><srai>sublist from 9 to 20 of <get var="franjas"/></srai></set>
+      <set var="contador">1</set>
+      <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+      </think>
+      <condition var="item">
+        <li value="$"><srai>OCUPADO</srai>, ¿desea otro día? <think><set name="topic">otra</set></think></li>
+        <li value="null">Si hay, estos son los huecos libres: <srai>horas libres <get name="fecha"/></srai>
+        ¿Desea alguno en concreto? <think><set name="topic">libre</set></think>
+        </li>
+        <li>
+        <think>
+          <set var="contador"><map name="successor"><get var="contador"/></map></set>
+          <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+        </think>
+        <loop/>
+        </li>
+        </condition>
+    </template>
+</category>
+
+
+<!--Regla 5 -->
+
+<!--Regla 4 -->
+<category>
+    <pattern>ESTA LIBRE EL DIA TARDE * </pattern>
+    <template>
+      Deme un momento que se lo miro
+      <think>
+      <set var="franjas"><srai>list of day <star/></srai></set>
+      <set var="franjas"><srai>sublist from 13 to 20 of <get var="franjas"/></srai></set>
+      <set var="contador">1</set>
+      <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+      </think>
+      <condition var="item">
+        <li value="$"><srai>OCUPADO</srai>, ¿desea otro día? <think><set name="topic">otra</set></think></li>
+        <li value="null">Tenemos estos huecos libres por la tarde: <srai>horas libres tarde <get name="fecha"/></srai>
+        ¿Desea alguno en concreto? <think><set name="topic">libre</set></think>
+        </li>
+        <li>
+        <think>
+          <set var="contador"><map name="successor"><get var="contador"/></map></set>
+          <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+        </think>
+        <loop/>
+        </li>
+        </condition>
+    </template>
+</category>
+
+<!--Regla 4 -->
+<category>
+    <pattern>ESTA LIBRE EL DIA MAÑANA * </pattern>
+    <template>
+      Deme un momento que se lo miro
+      <think>
+      <set var="franjas"><srai>list of day <star/></srai></set>
+      <set var="franjas"><srai>sublist from 9 to 13 of <get var="franjas"/></srai></set>
+      <set var="contador">1</set>
+      <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+      </think>
+      <condition var="item">
+        <li value="$"><srai>OCUPADO</srai>, ¿desea otro día? <think><set name="topic">otra</set></think></li>
+        <li value="null">Por la mañana tenemos libres estos huecos: <srai>horas libres mañana <get name="fecha"/></srai>
+        ¿Desea alguno en concreto? <think><set name="topic">libre</set></think>
+        </li>
+        <li>
+        <think>
+          <set var="contador"><map name="successor"><get var="contador"/></map></set>
+          <set var="item"><srai>selectitem <get var="contador"/> in <get var="franjas"/></srai></set>
+        </think>
+        <loop/>
+        </li>
+        </condition>
+    </template>
+</category>
+
+
+
+<!--Regla 6 -->
+<category>
+    <pattern>OCUPADO</pattern>
+    <template>
+      <random>
+        <li>Siento comunicarle que ese día esta totalmente ocupado</li>
+        <li>Lo sentimos pero no hay huecos libres</li>
+        <li>No tenemos sitio libre ese día</li>
+        <li>Vaya, pues no tenemos huecos libres ese dia</li>
+        <li>Lo siento pero el dia esta completo, lo sentimos</li>
+      </random>
+    </template>
+</category>
+
+<!--Regla 7 -->
+<topic name="libre">
+
+  <category>
+      <pattern>^ Si ^ </pattern>
+      <template>¿A que hora?</template>
+  </category>
+
+<category>
+    <pattern>^ (Si) ^ las <set>hours</set> ^ </pattern>
+    <template>A las <map name="horas"><star index="3"/></map>:00, perfecto
+      <srai>MARK OCUPADO AT <map name="horas"><star index="3"/></map>:00 ON <get name="fecha"/></srai>
+              ¿Desea otra cita? <think><set name="topic">otra</set></think>
+    </template>
+</category>
+
+<!--Regla 8 -->
+<category>
+    <pattern>^ (Si) ^ las <set>hours_00</set> ^ </pattern>
+    <template>A las <star index="3"/>, perfecto
+      <srai>MARK OCUPADO AT <star index="3"/> ON <get name="fecha"/></srai>
+              ¿Desea otra cita? <think><set name="topic">otra</set></think>
+    </template>
+</category>
+
+<!--Regla 9 -->
+<category>
+    <pattern> ^ No ^</pattern>
+    <template>Mmm vale, ¿quiere que le mire otro día?<think><set name="topic">otra</set></think></template>
+</category>
+
+<!--Regla 10 -->
+<category>
+    <pattern> ^ (No) ^ [igual importa cual sea] ^ </pattern>
+    <template>
+      <think><set name="cl">1</set></think>
+      ¿Que le parece a las <srai>selectitem <get name="cl"/> in <get name="libres"/></srai>?
+      <think><set name="topic">igual</set></think>
+  </template>
+</category>
+</topic>
+
+
+<topic name="otra">
+
+<!--Regla 14 -->
+  <category>
+      <pattern>^ Si ^</pattern>
+      <template>Digame que día quiere que le mire</template>
+  </category>
+
+<!--Regla 15 -->
+  <category>
+      <pattern> ^ No ^</pattern>
+      <template>Muchas gracias entonces, que pase buen día.</template>
+  </category>
+
+</topic>
+
+<!--Regla 16 -->
+<topic name="igual">
+  <category>
+      <pattern>^ (Si) ^ (esa) ^ (perfecto) ^ (vale) ^</pattern>
+      <template>
+        Okey, pues el <get name="fecha"/> a las <srai>selectitem <get name="cl"/> in <get name="libres"/></srai>
+        <srai>MARK OCUPADO AT <srai>selectitem <get name="cl"/> in <get name="libres"/></srai> ON <get name="fecha"/></srai>
+        ¿Quiere otra cita? <think><set name="topic">otra</set></think>
+      </template>
+  </category>
+
+<!--Regla 17 -->
+  <category>
+      <pattern> ^ (No) ^ (otra) (nada) (imposible) ^</pattern>
+      <template>
+        <think>
+          <set name="cl"><map name="successor"><get name="cl"/></map></set>
+          <set var="item"><srai>selectitem <get name="cl"/> in <get name="libres"/></srai></set>
+        </think>
+          <condition var="item">
+            <li value="$">Pues no hay más horas para ese día, ¿Desea otro día?<think><set name="topic">otra</set></think></li>
+            <li>¿Y a las <get var="item"/>?</li>
+          </condition>
+      </template>
+  </category>
+
+
+</topic>
+
+
+
+
+</aiml>
