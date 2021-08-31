@@ -1,0 +1,130 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Sensores IoT</title>
+	</head>
+	<body style="background-color:khaki;">
+		<h1> Página para Simular los Sensores </h1>
+		<form action="javascript:void(0);" onsubmit="enviar();">
+			Valor a simular: <input type="label" id="val1" style="border-radius:5px;background-color:orange;"/><br />
+			Sensor a simular:
+			<select id="sensores" style="border-radius:5px;background-color:orange;">
+				<option value="temperatura">Temperatura</option>
+				<option value="luminosidad">Luminosidad</option>
+				<option value="suciedad">Suciedad</option>
+				<option value="humedad">Humedad</option>
+			</select><br/>
+			<input type="submit" value="Simular" style="border-radius:5px;background-color:orange;"/>
+		</form>
+		<div id="principal">
+			<div id="info">
+			<span id="actuadores"></span>
+			<span id="mensajes"></span>
+			<p><a href="usuario.html">Ir a la Página usuario</a></p>
+			<span id="resul"></span>
+			</div>
+			<div id="container-user">
+				<h4>Usuarios activos</h4>
+				<span id="usuarios"></span>
+			</div>
+		</div>
+		<div>
+			<h4>Registro</h4>
+			<div id="resultados"></div>
+		</div>
+		<style type="text/css">
+			#principal{
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+			}
+			#container-user{
+				width: 50%;
+			}
+			form{
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				width: 10%;
+			}
+			a ,a:visited{
+				color:brown;
+			}
+			p{
+				font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+			}
+		</style>
+	</body>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+		var serviceURL = document.URL;
+		var socket = io.connect('http://localhost:8080');
+
+		function enviar() {
+			var d = new Date();
+			var val1 = document.getElementById("val1").value;
+			var sensor = document.getElementById("sensores").value;
+			socket.emit('obtenerValoresSensores',{sensor: sensor, valor : val1, time : d});
+		}
+
+		socket.on('usuariosActivos',function(data){
+			actualizarUsuarios(data);
+		})
+
+		socket.on('obtenerRegistro',function(data){
+			actualizarRegistro(data);
+		});
+
+		socket.on('valoresSensores',function(valores){
+            render(valores);
+        });
+
+        function render(valores)
+        {
+			var info = '<p> Temperatura (ºC) = '+valores.temperatura+' ||| Aire Acondicionado: '+valores.estadoAC+
+				'</p><p>Luminosidad (%) = '+ valores.luminosidad+' ||| Persiana : '+valores.estadoPersiana+
+				'</p><p>Humedad (%) = '+valores.humedad+' ||| Estado Humidificador: '+valores.estadoHumidificador+
+				'</p><p>Suciedad (%) = '+valores.suciedad+' ||| Estado Roomba: '+valores.estadoRoomba+
+				'</p><p>Velocidad viento (m/s) = '+valores.viento+' ||| Estado ventana: '+ valores.estadoVentana+
+				'</p><p>Estado del agente domótico : '+valores.estadoAgente+'</p>';
+            var notificaciones = valores.mensajesAgente;  
+			document.getElementById('actuadores').innerHTML = info;
+			document.getElementById('mensajes').innerHTML = notificaciones;
+        }
+
+		function actualizarRegistro(valores){
+			var listContainer = document.getElementById('resultados');
+			listContainer.innerHTML = '';
+			var listElement = document.createElement('ul');
+			listContainer.appendChild(listElement);
+			var num = valores.length;
+			if(num != 0){
+				for(var i = num - 1 ; i >= 0; i--) {
+	            	var listItem = document.createElement('li');
+	            	listItem.innerHTML = "{" + JSON.stringify(valores[i]).slice(34);
+	            	listElement.appendChild(listItem);
+				}
+			}else{
+				var listItem = document.createElement('li');
+	            	listItem.innerHTML = "No hay datos guardados en el registro";
+	            	listElement.appendChild(listItem);
+			}
+
+	    }
+
+		function actualizarUsuarios(datos){
+			var listContainer = document.getElementById('usuarios');
+			listContainer.innerHTML = '';
+			var listElement = document.createElement('ul');
+			listContainer.appendChild(listElement);
+			var num = datos.length;
+			for(var i = num - 1 ; i >= 0; i--) {
+	            var listItem = document.createElement('li');
+	            listItem.innerHTML = JSON.stringify(datos[i]);
+	            listElement.appendChild(listItem);
+			}
+	    }
+
+	</script>
+</html>

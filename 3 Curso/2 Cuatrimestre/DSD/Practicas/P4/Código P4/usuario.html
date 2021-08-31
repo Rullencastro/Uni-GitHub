@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Usuario IoT</title>
+    </head>
+    <body style="background-color:khaki;">
+        <h1> Página para el usuario </h1>
+        <div style="display: flex;flex-direction: row;justify-content: space-between;">
+            <div>
+                <h2>Información del Sistema Domótico</h2>
+                <div id="resultados"></div>
+                <div id="mensajes"></div>
+            </div>
+            <div style="width: 70%;display: flex;flex-direction: column;justify-content: space-between;">
+                <h2>Panel de control manual del usuario</h2>
+                <input type="button" value="Encender/Apagar Aire Acondicionado" onclick="apagarAireAcondicionado()"></input>
+                <input type="button" value="Encender/Apagar Persiana" onclick="bajarPersiana()"></input>
+                <input type="button" value="Encender/Apagar Ventana" onclick="cerrarVentana()"></input>
+                <input type="button" value="Encender/Apagar Roomba" onclick="pasarRoomba()"></input>    
+                <input type="button" value="Encender/Apagar Humidificador" onclick="apagarHumidificador()"></input>
+                <input type="button" value="Encender/Apagar Agente Domótico" onclick="apagarAgente()"></input>
+                <input type="button" value="Enviar correo notificador" onclick="enviarCorreoNotificador()"></input>   
+            </div>
+        </div>
+        <style type="text/css">
+			input{
+				width: 25%;
+                border-radius:5px;
+                background-color: orange;
+			}
+            p{
+				font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+			}
+		</style>
+      
+    </body>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+
+        var serviceURL = document.URL;
+        var socket = io.connect('http://localhost:8080');
+
+        socket.on('valoresSensores',function(valores){
+            render(valores);
+        });
+
+
+        function render(valores)
+        {
+            var info = '<p> Temperatura (ºC) = '+valores.temperatura+' ||| Aire Acondicionado: '+valores.estadoAC+
+				'</p><p>Luminosidad (%) = '+ valores.luminosidad+' ||| Persiana : '+valores.estadoPersiana+
+				'</p><p>Humedad (%) = '+valores.humedad+' ||| Estado Humidificador: '+valores.estadoHumidificador+
+				'</p><p>Suciedad (%) = '+valores.suciedad+' ||| Estado Roomba: '+valores.estadoRoomba+
+				'</p><p>Velocidad viento (m/s) = '+valores.viento+' ||| Estado ventana: '+ valores.estadoVentana+
+                '</p><p>Estado del agente domótico : '+valores.estadoAgente+'</p>';
+            var notificaciones = valores.mensajesAgente;   
+			document.getElementById('resultados').innerHTML = info;
+			document.getElementById('mensajes').innerHTML = notificaciones;
+        }
+
+        function apagarAgente()
+        {
+            socket.emit('estadoAgente');
+            return false;
+        }
+
+        function apagarAireAcondicionado()
+        {
+            socket.emit('AC');
+            return false;
+        }
+
+        function bajarPersiana()
+        {
+            socket.emit('persiana');
+            return false;
+        }
+
+        function cerrarVentana()
+        {
+            socket.emit('ventana');
+            return false;
+        }
+
+        function pasarRoomba()
+        {
+            socket.emit('roomba');
+            return false;
+        }
+
+        function apagarHumidificador()
+        {
+            socket.emit('humidificador');
+            return false;
+        }
+
+        function enviarCorreoNotificador()
+        {
+            socket.emit('enviarCorreo');
+            return false;
+        }
+
+
+    </script>
+</html>
