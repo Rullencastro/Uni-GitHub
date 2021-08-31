@@ -1,0 +1,63 @@
+Ejercicios de la relación de FBD 1-8
+Raúl Castro Moreno
+2ºB - B2
+
+1º
+	SELECT S#
+	FROM suministros
+	WHERE J# = J1;
+	
+
+2º
+	SELECT *
+	FROM suministros
+	WHERE cantidad > 100;
+	
+
+3º
+	SELECT proveedores.nombre-s,piezas.nombre-p,proyectos.nombre-j
+	FROM proveedores,ventas
+	WHERE proveedores.CIUDAD = piezas.CIUDAD and piezas.CIUDAD = proyectos.CIUDAD;
+
+4º
+	SELECT piezas.nombre-p
+	FROM proveedores,piezas
+	WHERE proveedores.CIUDAD = Londres;
+
+5º
+	SELECT proveedores.CIUDAD,proyectos.CIUDAD
+	FROM suministros,proyectos,proveedores
+	WHERE suministros.CANTIDAD > 0;
+
+6º
+	SELECT suministros.P# 
+	FROM suministros,proyectos,proveedor
+	WHERE proveedor.CIUDAD = proyectos.CIUDAD;
+
+7º
+	SELECT suministros.J# 
+	FROM suministros,proyectos,proveedor
+	WHERE proveedor.CIUDAD <> proyectos.CIUDAD;
+
+8º
+	SELECT suministros.J#
+	FROM suministros,piezas
+	WHERE suministros.P# = piezas.P# and suministros.S# = S1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,83 @@
+
+	RAÚL CASTRO MORENO
+	2ºB - B2
+
+
+1.
+	CREATE TABLE barcos (
+	      NomBarco VARCHAR2(20) PRIMARY KEY,
+	      NomClase VARCHAR2(20) CHECK (NomClase IN ('Goleta','Carabela','Fragata','Galeón')),
+	      FechaCons DATE,
+	      Pais VARCHAR2(20)
+	);
+
+
+	CREATE TABLE clase (
+	      NomClase VARCHAR2(20) PRIMARY KEY REFERENCES barcos(NomClase),
+	      Tipo VARCHAR2(20),
+	      NCanones INT CHECK ((Ncanones >= 4)  AND (NCanones <=16)) DEFAULT 4,
+	      Calibre INT,
+	      Tonelaje FLOAT NOT NULL	     		
+	);
+
+	CREATE TABLE batalla (
+	      NomBatalla VARCHAR2(20) PRIMARY KEY,
+	      Localización VARCHAR2(20)
+	);
+
+	CREATE TABLE participa (
+	      NomBatalla VARCHAR2(20),
+	      NomBarco VARCHAR2(20),
+	      Estado VARCHAR2(20) CHECK (Estado IN('Hundido','Indemne','Perjudicao')),
+	      PRIMARY KEY (NomBatalla , NomBarco),
+	      FOREIGN KEY NomBatalla REFERENCES batalla(NomBatalla),
+	      FOREIGN KEY NomBarco REFERENCES barco(NomBarco)  
+	);
+
+
+2.
+
+	SELECT NomBarco
+	FROM barcos
+	WHERE NomClase = 'Goleta'
+
+	MINUS
+
+	SELECT p1.NomBarco
+	FROM participa p1, participa p2
+	WHERE p1.NomBatalla<>p2.NomBatalla and p1.NomBarco==p2.NomBarco;
+
+3.
+
+	SELECT *
+	FROM batalla bat1
+	WHERE Localización='Pacífico' AND NOT EXISTS (
+	(SELECT b1.NomBarco FROM barcos b1 WHERE b1.NomClase IN (SELECT NomClase FROM clase WHERE Ncanones>10)
+	MINUS
+	SELECT p1.NomBarco FROM participa p1 WHERE p1.NomBatalla=bat1.NomBatalla);
+						   
+
+4.
+
+	SELECT NomBatalla
+	FROM participa
+	WHERE 10 < (SELECT COUNT(DISTINCT NomBarco) 
+		         FROM participa
+		         WHERE Estado = 'Hundido');
+
+5.
+
+	CREATE VIEW numBarcos-Pais-Año as
+	SELECT Pais, count(*), to_char(FechaCons , 'yyyy') 
+	FROM barcos
+	GROUP BY Pais,to_char(FechaCons , 'yyyy')
+
+	
+
+
+
+
+
+
+
+
