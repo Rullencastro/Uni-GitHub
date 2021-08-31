@@ -1,0 +1,27 @@
+static defecto
+Tiempo(seg.): 0.074869808	 / Tamaño vectores y matriz: 15360
+Vector Resultante[0] = 218304.421632  Vector Resultante[15359] = 14.212527  
+static 1
+Tiempo(seg.): 0.057358220	 / Tamaño vectores y matriz: 15360
+Vector Resultante[0] = 218304.421632  Vector Resultante[15359] = 14.212527  
+static 64
+Tiempo(seg.): 0.059947450	 / Tamaño vectores y matriz: 15360
+Vector Resultante[0] = 218304.421632  Vector Resultante[15359] = 14.212527  
+dynamic defecto
+Tiempo(seg.): 0.061633594	 / Tamaño vectores y matriz: 15360
+Vector Resultante[0] = 218304.421632  Vector Resultante[15359] = 14.212527  
+dynamic 1
+Tiempo(seg.): 0.062831197	 / Tamaño vectores y matriz: 15360
+Vector Resultante[0] = 218304.421632  Vector Resultante[15359] = 14.212527  
+dynamic 64
+Tiempo(seg.): 0.056492981	 / Tamaño vectores y matriz: 15360
+Vector Resultante[0] = 218304.421632  Vector Resultante[15359] = 14.212527  
+guided defecto
+Tiempo(seg.): 0.061438240	 / Tamaño vectores y matriz: 15360
+Vector Resultante[0] = 218304.421632  Vector Resultante[15359] = 14.212527  
+guided 1
+Tiempo(seg.): 0.075869579	 / Tamaño vectores y matriz: 15360
+Vector Resultante[0] = 218304.421632  Vector Resultante[15359] = 14.212527  
+guided 64
+Tiempo(seg.): 0.059907883	 / Tamaño vectores y matriz: 15360
+Vector Resultante[0] = 218304.421632  Vector Resultante[15359] = 14.212527  

@@ -1,0 +1,54 @@
+1 thread
+Tiempo(seg.): 0.004736759	 / Tamaño matrices: 120
+Matriz Resultante[0] = 1119.813047  Matriz Resultante[119] = 1787706.321047  
+Tiempo(seg.): 0.247123986	 / Tamaño matrices: 440
+Matriz Resultante[0] = 4105.981173  Matriz Resultante[439] = 85981766.057173  
+Tiempo(seg.): 5.880426969	 / Tamaño matrices: 830
+Matriz Resultante[0] = 7745.373576  Matriz Resultante[829] = 574622639.950580  
+Tiempo(seg.): 18.154316157	 / Tamaño matrices: 1205
+Matriz Resultante[0] = 11244.789348  Matriz Resultante[1204] = 1755664630.891378  
+2 thread
+Tiempo(seg.): 0.002489340	 / Tamaño matrices: 120
+Matriz Resultante[0] = 1119.813047  Matriz Resultante[119] = 1787706.321047  
+Tiempo(seg.): 0.138296504	 / Tamaño matrices: 440
+Matriz Resultante[0] = 4105.981173  Matriz Resultante[439] = 85981766.057173  
+Tiempo(seg.): 3.107342768	 / Tamaño matrices: 830
+Matriz Resultante[0] = 7745.373576  Matriz Resultante[829] = 574622639.950580  
+Tiempo(seg.): 9.113895860	 / Tamaño matrices: 1205
+Matriz Resultante[0] = 11244.789348  Matriz Resultante[1204] = 1755664630.891378  
+3 thread
+Tiempo(seg.): 0.001311503	 / Tamaño matrices: 120
+Matriz Resultante[0] = 1119.813047  Matriz Resultante[119] = 1787706.321047  
+Tiempo(seg.): 0.091523960	 / Tamaño matrices: 440
+Matriz Resultante[0] = 4105.981173  Matriz Resultante[439] = 85981766.057173  
+Tiempo(seg.): 2.195836637	 / Tamaño matrices: 830
+Matriz Resultante[0] = 7745.373576  Matriz Resultante[829] = 574622639.950580  
+Tiempo(seg.): 4.588118177	 / Tamaño matrices: 1205
+Matriz Resultante[0] = 11244.789348  Matriz Resultante[1204] = 1755664630.891378  
+4 thread
+Tiempo(seg.): 0.000942707	 / Tamaño matrices: 120
+Matriz Resultante[0] = 1119.813047  Matriz Resultante[119] = 1787706.321047  
+Tiempo(seg.): 0.074499626	 / Tamaño matrices: 440
+Matriz Resultante[0] = 4105.981173  Matriz Resultante[439] = 85981766.057173  
+Tiempo(seg.): 1.677204285	 / Tamaño matrices: 830
+Matriz Resultante[0] = 7745.373576  Matriz Resultante[829] = 574622639.950580  
+Tiempo(seg.): 4.940340113	 / Tamaño matrices: 1205
+Matriz Resultante[0] = 11244.789348  Matriz Resultante[1204] = 1755664630.891378  
+5 thread
+Tiempo(seg.): 0.000854582	 / Tamaño matrices: 120
+Matriz Resultante[0] = 1119.813047  Matriz Resultante[119] = 1787706.321047  
+Tiempo(seg.): 0.060606144	 / Tamaño matrices: 440
+Matriz Resultante[0] = 4105.981173  Matriz Resultante[439] = 85981766.057173  
+Tiempo(seg.): 1.345133252	 / Tamaño matrices: 830
+Matriz Resultante[0] = 7745.373576  Matriz Resultante[829] = 574622639.950580  
+Tiempo(seg.): 4.207592349	 / Tamaño matrices: 1205
+Matriz Resultante[0] = 11244.789348  Matriz Resultante[1204] = 1755664630.891378  
+6 thread
+Tiempo(seg.): 0.000649583	 / Tamaño matrices: 120
+Matriz Resultante[0] = 1119.813047  Matriz Resultante[119] = 1787706.321047  
+Tiempo(seg.): 0.053907599	 / Tamaño matrices: 440
+Matriz Resultante[0] = 4105.981173  Matriz Resultante[439] = 85981766.057173  
+Tiempo(seg.): 1.144857887	 / Tamaño matrices: 830
+Matriz Resultante[0] = 7745.373576  Matriz Resultante[829] = 574622639.950580  
+Tiempo(seg.): 3.385066852	 / Tamaño matrices: 1205
+Matriz Resultante[0] = 11244.789348  Matriz Resultante[1204] = 1755664630.891378  

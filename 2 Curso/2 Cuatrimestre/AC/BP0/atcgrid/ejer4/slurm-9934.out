@@ -1,0 +1,91 @@
+Id. usuario del trabajo: b2estudiante4
+Id. del trabajo: 9934
+Nombre del trabajo especificado por usuario: helloOMP
+Directorio de trabajo (en el que se ejecuta el script): /home/b2estudiante4/bp0/ejer4
+Cola: ac
+Nodo que ejecuta este trabajo:atcgrid
+Nº de nodos asignados al trabajo: 1
+Nodos asignados al trabajo: atcgrid1
+CPUs por nodo: 24
+
+ 1. Ejecución helloOMP una vez sin cambiar nº de threads (valor por defecto):
+
+(0:!!!Hello)
+(8:!!!Hello)
+(2:!!!Hello)
+(9:!!!Hello)
+(7:!!!Hello)
+(3:!!!Hello)
+(1:!!!Hello)
+(5:!!!Hello)
+(11:!!!Hello)
+(4:!!!Hello)
+(6:!!!Hello)
+(10:!!!Hello)
+(2:world!!!)
+(8:world!!!)
+(9:world!!!)
+(7:world!!!)
+(10:world!!!)
+(4:world!!!)
+(1:world!!!)
+(3:world!!!)
+(6:world!!!)
+(11:world!!!)
+(5:world!!!)
+(0:world!!!)
+
+ 2. Ejecución helloOMP varias veces con distinto nº de threads:
+
+
+  - Para 12 threads:
+(3:!!!Hello)
+(9:!!!Hello)
+(11:!!!Hello)
+(4:!!!Hello)
+(1:!!!Hello)
+(0:!!!Hello)
+(8:!!!Hello)
+(2:!!!Hello)
+(10:!!!Hello)
+(6:!!!Hello)
+(7:!!!Hello)
+(5:!!!Hello)
+(3:world!!!)
+(4:world!!!)
+(6:world!!!)
+(2:world!!!)
+(9:world!!!)
+(10:world!!!)
+(0:world!!!)
+(1:world!!!)
+(11:world!!!)
+(7:world!!!)
+(5:world!!!)
+(8:world!!!)
+
+  - Para 6 threads:
+(4:!!!Hello)
+(0:!!!Hello)
+(3:!!!Hello)
+(5:!!!Hello)
+(1:!!!Hello)
+(2:!!!Hello)
+(4:world!!!)
+(3:world!!!)
+(1:world!!!)
+(0:world!!!)
+(5:world!!!)
+(2:world!!!)
+
+  - Para 3 threads:
+(1:!!!Hello)
+(0:!!!Hello)
+(2:!!!Hello)
+(1:world!!!)
+(0:world!!!)
+(2:world!!!)
+
+  - Para 1 threads:
+(0:!!!Hello)
+(0:world!!!)
