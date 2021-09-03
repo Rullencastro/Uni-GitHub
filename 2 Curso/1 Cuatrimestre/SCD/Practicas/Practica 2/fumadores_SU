@@ -1,0 +1,120 @@
+
+	VARIABLES COMPARTIDAS:
+
+Solo hay 1, de tipo mutex llamada mtx, la cual utilizo para realizar la impresion por pantalla de los mensajes.
+
+	COLAS CONDICION:
+
+Hay 4 colas condicion (CondVar) declaradas en el monitor, las cuales se llaman y su condicion es:
+
+	colaF1 : cola del primer fumador ,hace un signal cuando el ingrediente del mostrador es 0 y hace un wait cuando el ingrediente a obtener por la funcion es diferente del que hay en el mostrador y es igual a 0.
+	colaF2 : cola del segundo fumador ,hace un signal cuando el ingrediente del mostrador es 1 y hace un wait cuando el ingrediente a obtener por la funcion es diferente del que hay en el mostrador y es igual a 1.
+	colaF3 : cola del tercer fumador ,hace un signal cuando el ingrediente del mostrador es 2 y hace un wait cuando el ingrediente a obtener por la funcion es diferente del que hay en el mostrador y es igual a 2.
+	colaE : cola del estanquero,si el mostrador esta libre hace un signal, y si hay un ingrediente en el mostrador
+,realiza un wait
+
+	PSEUDO-CÓDIGO DE LOS PROCEDIMIENTOS DEL MONITOR:
+	
+	process ponerIngrediente [i:0..2];
+	begin
+		ingrediente_actual = i;
+		mostrador_libre = false;
+
+		if ingrediente_actual == 0 then
+		colaF1.signal();
+
+		else if ingrediente_actual == 1 then
+		colaF2.signal();	
+		end
+
+		else
+		colaF3.signal();
+		end
+	end
+
+
+	process obtenerIngrediente [i:0..2];
+	begin
+		if i != ingrediente_actual && i == 0 then
+		colaF1.wait();
+ 		
+		else if i != ingrediente_actual && i == 1 then
+ 		colaF2.wait();
+ 		end
+
+		else ifi != ingrediente_actual && i == 2 then
+ 		colaF3.wait();
+ 		end
+
+ 		mostrador_libre = true;
+	 	ing_actual = 4; 		//Numero que no sea ninguno de los ingredientes
+ 		colaE.signal();
+	end
+
+	
+	process esperarRecogidaIngrediente;
+	begin
+		if mostrador_libre == false then
+		colaE.wait();
+		else
+		colaE.signal();
+		end
+	end
+
+	EJEMPLO DE EJECUCIÓN:
+
+Producido: 1
+Puesto ingrediente: 1
+Retirado ingrediente: 1
+Fumador 1  : empieza a fumar (62 milisegundos)
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+Producido: 2
+Puesto ingrediente: 2
+Retirado ingrediente: 2
+Fumador 2  : empieza a fumar (133 milisegundos)
+Producido: 0
+Puesto ingrediente: 0
+Retirado ingrediente: 0
+Fumador 0  : empieza a fumar (168 milisegundos)
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+Producido: 2
+Puesto ingrediente: 2
+Retirado ingrediente: 2
+Fumador 2  : empieza a fumar (74 milisegundos)
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+Producido: 2
+Puesto ingrediente: 2
+Retirado ingrediente: 2
+Fumador 2  : empieza a fumar (119 milisegundos)
+Fumador 2  : termina de fumar, comienza espera de ingrediente.
+Producido: 1
+Puesto ingrediente: 1
+Retirado ingrediente: 1
+Fumador 1  : empieza a fumar (57 milisegundos)
+Fumador 1  : termina de fumar, comienza espera de ingrediente.
+Producido: 0
+Puesto ingrediente: 0
+Retirado ingrediente: 0
+Fumador 0  : empieza a fumar (185 milisegundos)
+Producido: 0
+Puesto ingrediente: 0
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+Retirado ingrediente: 0
+Fumador 0  : empieza a fumar (196 milisegundos)
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+Producido: 2
+Puesto ingrediente: 2
+Retirado ingrediente: 2
+Fumador 2  : empieza a fumar (143 milisegundos)
+Producido: 0
+Puesto ingrediente: 0
+Retirado ingrediente: 0
+Fumador 0  : empieza a fumar (56 milisegundos)
+Fumador 0  : termina de fumar, comienza espera de ingrediente.
+
+	
+
+
+
+

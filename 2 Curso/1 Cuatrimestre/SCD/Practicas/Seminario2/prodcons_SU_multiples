@@ -1,0 +1,2 @@
+	
+	En semántica SU podemos usar las operaciones wait tanto dentro de un if como de un while, aunque es aconsejable  usar un if ya que es mas eficiente.La diferencia se basa en que con este tipo de semántica aseguramos que ningún otro grupo de procesos(otra hebra) entre en la cola de procesos bloquedos por el monitor, por eso  da igual usar while o if porque en ningún puede ser interrumpido por otro grupo de procesos .

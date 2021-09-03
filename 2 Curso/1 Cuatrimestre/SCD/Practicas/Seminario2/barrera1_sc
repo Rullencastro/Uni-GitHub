@@ -1,0 +1,6 @@
+
+	1-Esto es debido a que la ultima que llega, es la que ejecuta todos los signals, y evidentemente se ejecuta esta en primer lugar.
+
+	2-Esto es debido a que el estándar C++11 no especifica ninguna política concreta para seleccionar la hebra que reanuda la ejecución.Por eso se debe asumir que no hay un criterio concreto para selccionar las siguientes hebras, el notify_one despierta a una cualquiera de ellas.
+
+	3-El constructor de un monitor no necesita exclusión mutua debido a que este solo se va a ejecutar una vez,y en   caso de que haya otro monitor con la msima funcion da igual que se ejecuten los dos constructores a la vez ya que cada monitor tienen sus varibales, y por ultimo añadir que este problema y las funciones de las hebras requieren solo de un solo monitor, asi que no es necesario la exclusion mutua.

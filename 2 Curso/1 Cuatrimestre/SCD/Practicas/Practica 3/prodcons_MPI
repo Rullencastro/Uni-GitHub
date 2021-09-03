@@ -1,0 +1,146 @@
+	
+	1.
+
+		Para solucionar este problema primero he creado unas constantes como variables globales, las cuales nos indican el numero de productores , el numero de consumidores y la identificacion
+	del buffer que es 4. Se han cambiado tambien los procesos esperados a 10 y establecidas unas etiquetas para diferenciar mensajes en el buffer.
+
+		Luego a la hora de cambiar las funciones, empezamos por la de producir dato, en la cual hemos quitado que devuelva el contador que se incrementaba, a devolver una suma de el numero de orden
+	multiplicado por k, que son el numero de items/numero de procesos, y a esto se le suma el contador. Esto se hace para que el primer productor cree k valores y dependiendo de su orden mas altos o
+	menos, el primer productor hara de 0 hasta un valor dependiendo de k, el siguiente hara desde ese numero hasta otro pero producira el mismo numero que todos los demas y en este caso son 5.
+
+		La siguiente funcion que seria la del productor, actualizamos nuestro blucle for para que nos produzca el numero de datos que queremos(mencionado anteriormente) y ademas, las etiquetas que 		hemos definido previamente, usaremos la primera en el Send de esta funcion la cual seria la etiq_productor.
+
+		La funcion de consumidor usaremos tambien la etiqueta en el Ssend, pero en este caso usamos etiq_consumidor, y en el Recv controlamos la etiqueta para recibir el valor del buffer. Esto ira
+	dentro de un bucle for el cual controlara que cada consumidor consuma el mismo numero de valores y que no se nos cuelgue.
+
+		Y en la funcion buffer,tendremos una nueva etiqueta, la cual nos hara saber que segun las condiciones del buffer(lleno, vacio, o con elementos pero no lleno), podra saber de quien puede 		recibir mensajes, ya sea del productor, del consumidor, o de los dos.En el Recv pondremos que podemos recibir de cualquier proceso y la etiqueta seara nuestra etiq_aceptable.Y finalmente el switch
+	actua segun la etiqueta recibida.
+
+		Finalmente, actualizamos el main para crear los diferentes procesos, el proceso 0-3 son productores, el 4 es el buffer y los procesos con id 5-9 son consumidores.
+
+
+
+
+	3.TRAZA DE EJECUCION
+
+	
+Productor de orden 0 produce: 1
+-----------Productor 0 va a enviar valor 1
+Buffer ha recibido valor 1
+Buffer va a enviar valor 1
+Consumidor 1 ha recibido valor 1
+Productor de orden 1 produce: 6
+-----------Productor 1 va a enviar valor 6
+Buffer ha recibido valor 6
+Buffer va a enviar valor 6
+Consumidor 2 ha recibido valor 6
+Productor de orden 3 produce: 16
+-----------Productor 3 va a enviar valor 16
+Buffer ha recibido valor 16
+Buffer va a enviar valor 16
+Consumidor 3 ha recibido valor 16
+Productor de orden 0 produce: 2
+-----------Productor 0 va a enviar valor 2
+Buffer ha recibido valor 2
+Buffer va a enviar valor 2
+Consumidor 4 ha recibido valor 2
+Productor de orden 2 produce: 11
+-----------Productor 2 va a enviar valor 11
+Buffer ha recibido valor 11
+Buffer va a enviar valor 11
+Consumidor 5 ha recibido valor 11
+Productor de orden 2 produce: 12
+-----------Productor 2 va a enviar valor 12
+Buffer ha recibido valor 12
+Productor de orden 1 produce: 7
+-----------Productor 1 va a enviar valor 7
+Buffer ha recibido valor 7
+                  consumido: 1
+Buffer va a enviar valor 12
+Consumidor 1 ha recibido valor 12
+                  consumido: 11
+Buffer va a enviar valor 7
+Consumidor 5 ha recibido valor 7
+Buffer ha recibido valor 17
+Productor de orden 3 produce: 17
+-----------Productor 3 va a enviar valor 17
+Buffer ha recibido valor 13
+Productor de orden 2 produce: 13
+-----------Productor 2 va a enviar valor 13
+Productor de orden 0 produce: 3
+-----------Productor 0 va a enviar valor 3
+Buffer ha recibido valor 3
+Productor de orden 1 produce: 8
+-----------Productor 1 va a enviar valor 8
+Buffer ha recibido valor 8
+Productor de orden 3 produce: 18
+-----------Productor 3 va a enviar valor 18
+Buffer ha recibido valor 18
+Productor de orden 0 produce: 4
+-----------Productor 0 va a enviar valor 4
+Buffer ha recibido valor 4
+Productor de orden 1 produce: 9
+-----------Productor 1 va a enviar valor 9
+Buffer ha recibido valor 9
+Productor de orden 3 produce: 19
+-----------Productor 3 va a enviar valor 19
+Buffer ha recibido valor 19
+                  consumido: 6
+Consumidor 2 ha recibido valor 17
+Buffer va a enviar valor 17
+                  consumido: 16
+Consumidor 3 ha recibido valor 13
+Buffer va a enviar valor 13
+Productor de orden 2 produce: 14
+-----------Productor 2 va a enviar valor 14
+Buffer ha recibido valor 14
+                  consumido: 12
+Consumidor 1 ha recibido valor 3
+Buffer va a enviar valor 3
+                  consumido: 2
+Consumidor 4 ha recibido valor 8
+Buffer va a enviar valor 8
+Productor de orden 0 produce: 5
+-----------Productor 0 va a enviar valor 5
+Buffer ha recibido valor 5
+Buffer ha recibido valor 20
+Productor de orden 3 produce: 20
+-----------Productor 3 va a enviar valor 20
+                  consumido: 7
+Consumidor 5 ha recibido valor 18
+Buffer va a enviar valor 18
+Productor de orden 2 produce: 15
+-----------Productor 2 va a enviar valor 15
+Buffer ha recibido valor 15
+Productor de orden 1 produce: 10
+-----------Productor 1 va a enviar valor 10
+Buffer ha recibido valor 10
+                  consumido: 17
+Consumidor 2 ha recibido valor 4
+Buffer va a enviar valor 4
+                  consumido: 8
+Buffer va a enviar valor 9
+Consumidor 4 ha recibido valor 9
+Buffer va a enviar valor 19
+                  consumido: 3
+Consumidor 1 ha recibido valor 19
+                  consumido: 18
+Consumidor 5 ha recibido valor 14
+Buffer va a enviar valor 14
+                  consumido: 13
+Consumidor 3 ha recibido valor 5
+Buffer va a enviar valor 5
+                  consumido: 4
+Consumidor 2 ha recibido valor 20
+Buffer va a enviar valor 20
+                  consumido: 14
+                  consumido: 5
+Consumidor 3 ha recibido valor 15
+Buffer va a enviar valor 15
+                  consumido: 19
+                  consumido: 9
+Consumidor 4 ha recibido valor 10
+Buffer va a enviar valor 10
+                  consumido: 15
+                  consumido: 20
+                  consumido: 10

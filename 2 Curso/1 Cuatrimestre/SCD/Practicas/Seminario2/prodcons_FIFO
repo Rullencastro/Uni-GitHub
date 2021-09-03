@@ -1,0 +1,3 @@
+
+Para realizar el cambio de LIFO a FIFO, he creado las variables enteras primera_ocupada y cont. La primera indica
+cual es la posicion en el buffer la cual esta ocupada con un valor, y el cont, se inrementa y decrementa cada vez que escribe y lee en el buffer respectivamente, y me indica cuantas posiciones estan ocupadas en el buffer. Este se usa para las comprobaciones de si esta el buffer lleno o vacio, que se deje o de leer o de escribir hasta que se pueda realizar, es decir, si esta lleno, deja de escribir y si esta vacio deja de leer.

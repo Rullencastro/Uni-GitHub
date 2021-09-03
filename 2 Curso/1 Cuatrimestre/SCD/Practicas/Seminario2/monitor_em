@@ -1,0 +1,2 @@
+
+Resulta que al quitar el unlock del objeto mutex del cerrojo en Monitor2::incrementa() , no se libera el cerrojo y deja al monitor en un estado de interbloqueo, es decir, ninguna hebra esta ejecutando codigo pero ninguna puede entrar y todas estan en espera.

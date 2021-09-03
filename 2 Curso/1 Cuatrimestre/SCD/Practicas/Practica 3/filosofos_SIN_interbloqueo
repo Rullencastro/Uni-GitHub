@@ -1,0 +1,149 @@
+
+
+	1.
+		Mi solucion ha sido, sobre la plantilla que nos daban, rellenar con Ssend todas
+	las acciones realizadas por la funcion filosofos, el primero se mandaba al ten izq, luego al derecho, y luego otra vez lo mismo para soltarlos, y en la funcion tenedores,he puesto dos Recv , uno para cuando los solicitan, otros para liberalos. Esto funciona de manera que si un tenedor recibe la primera señal, estara cogido y esperara en el siguiente Recv, a que el mismo id de filosofo que lo cogio, le mande otra señal para soltarlo.
+
+		El problema del interbloqueo se soluciona de una manera muy sencilla, el cual puede ocurrir debido a que todos cojan 1 tenedor y soliciten el siguiente , pero esten todos cogidos, pues para ponerle fin a esto, la solucion realizada es que uno de los procesos filosofos, solicite y coja los tenedores en el orden inverso a los demas filosofos, es decir, primero el derecho y luego el izquierdo y asi se solucionaria el problema de interbloqueo. 
+
+
+	3. TRAZA DEL PROGRAMA SIN INTERBLOQUEO
+
+Filósofo 2 solicita ten. izq.3
+Filósofo 4 solicita ten. izq.5
+Filósofo 0 solicita ten. der.9
+Filósofo 0 solicita ten. izq.1
+Ten. 1 ha sido cogido por filo. 2
+Ten. 3 ha sido cogido por filo. 2
+Filósofo 2 solicita ten. der.1
+Ten. 5 ha sido cogido por filo. 4
+Filósofo 6 solicita ten. izq.7
+Filósofo 6 solicita ten. der.5
+Ten. 7 ha sido cogido por filo. 6
+Ten. 9 ha sido cogido por filo. 0
+Filósofo 4 solicita ten. der.3
+Filósofo 8 solicita ten. izq.9
+Filósofo 2 comienza a comer
+Filósofo 2 suelta ten. izq. 3
+Filósofo 2 suelta ten. der. 1
+Filosofo 2 comienza a pensar
+Filósofo 0 comienza a comer
+Ten. 1 ha sido liberado por filo. 2
+Ten. 1 ha sido cogido por filo. 0
+Ten. 3 ha sido liberado por filo. 2
+Ten. 3 ha sido cogido por filo. 4
+Filósofo 4 comienza a comer
+Filósofo 2 solicita ten. izq.3
+Filósofo 0 suelta ten. izq. 1
+Filósofo 0 suelta ten. der. 9
+Filosofo 0 comienza a pensar
+Ten. 1 ha sido liberado por filo. 0
+Ten. 9 ha sido liberado por filo. 0
+Ten. 9 ha sido cogido por filo. 8
+Filósofo 8 solicita ten. der.7
+Filósofo 4 suelta ten. izq. 5
+Ten. 5 ha sido liberado por filo. 4
+Ten. 5 ha sido cogido por filo. 6
+Filósofo 6 comienza a comer
+Filósofo 4 suelta ten. der. 3
+Filosofo 4 comienza a pensar
+Ten. 3 ha sido liberado por filo. 4
+Ten. 3 ha sido cogido por filo. 2
+Filósofo 2 solicita ten. der.1
+Ten. 1 ha sido cogido por filo. 2
+Filósofo 2 comienza a comer
+Filósofo 0 solicita ten. der.9
+Ten. 3 ha sido liberado por filo. 2
+Filósofo 2 suelta ten. izq. 3
+Filósofo 2 suelta ten. der. 1
+Ten. 1 ha sido liberado por filo. 2
+Filosofo 2 comienza a pensar
+Filósofo 4 solicita ten. izq.5
+Filósofo 8 comienza a comer
+Filósofo 6 suelta ten. izq. 7
+Filósofo 6 suelta ten. der. 5
+Ten. 7 ha sido liberado por filo. 6
+Ten. 7 ha sido cogido por filo. 8
+Ten. 5 ha sido liberado por filo. 6
+Ten. 5 ha sido cogido por filo. 4
+Filosofo 6 comienza a pensar
+Filósofo 4 solicita ten. der.3
+Filósofo 4 comienza a comer
+Ten. 3 ha sido cogido por filo. 4
+Filósofo 2 solicita ten. izq.3
+Filósofo 4 suelta ten. izq. 5
+Filósofo 4 suelta ten. der. 3
+Filosofo 4 comienza a pensar
+Ten. 3 ha sido liberado por filo. 4
+Ten. 3 ha sido cogido por filo. 2
+Ten. 5 ha sido liberado por filo. 4
+Filósofo 2 solicita ten. der.1
+Filósofo 2 comienza a comer
+Ten. 1 ha sido cogido por filo. 2
+Filósofo 8 suelta ten. izq. 9
+Ten. 9 ha sido liberado por filo. 8
+Ten. 9 ha sido cogido por filo. 0
+Filósofo 8 suelta ten. der. 7
+Filósofo 0 solicita ten. izq.1
+Ten. 7 ha sido liberado por filo. 8
+Filósofo 6 solicita ten. izq.7
+Ten. 7 ha sido cogido por filo. 6
+Filósofo 6 solicita ten. der.5
+Ten. 5 ha sido cogido por filo. 6
+Filósofo 6 comienza a comer
+Filosofo 8 comienza a pensar
+Ten. 7 ha sido liberado por filo. 6
+Filósofo 6 suelta ten. izq. 7
+Filósofo 6 suelta ten. der. 5
+Filosofo 6 comienza a pensar
+Ten. 5 ha sido liberado por filo. 6
+Filósofo 8 solicita ten. izq.9
+Filósofo 4 solicita ten. izq.5
+Filósofo 4 solicita ten. der.3
+Ten. 5 ha sido cogido por filo. 4
+Filósofo 2 suelta ten. izq. 3
+Filósofo 2 suelta ten. der. 1
+Filosofo 2 comienza a pensar
+Ten. 1 ha sido liberado por filo. 2
+Ten. 1 ha sido cogido por filo. 0
+Ten. 3 ha sido liberado por filo. 2
+Ten. 3 ha sido cogido por filo. 4
+Filósofo 4 comienza a comer
+Filósofo 0 comienza a comer
+Filósofo 6 solicita ten. izq.7
+Ten. 7 ha sido cogido por filo. 6
+Filósofo 6 solicita ten. der.5
+Filósofo 4 suelta ten. izq. 5
+Filósofo 4 suelta ten. der. 3
+Filosofo 4 comienza a pensar
+Ten. 5 ha sido liberado por filo. 4
+Ten. 5 ha sido cogido por filo. 6
+Ten. 3 ha sido liberado por filo. 4
+Filósofo 6 comienza a comer
+Filósofo 0 suelta ten. izq. 1
+Filósofo 0 suelta ten. der. 9
+Ten. 1 ha sido liberado por filo. 0
+Ten. 9 ha sido liberado por filo. 0
+Ten. 9 ha sido cogido por filo. 8
+Filósofo 8 solicita ten. der.7
+Filosofo 0 comienza a pensar
+Filósofo 2 solicita ten. izq.3
+Filósofo 2 solicita ten. der.1
+Filósofo 2 comienza a comer
+Ten. 3 ha sido cogido por filo. 2
+Ten. 1 ha sido cogido por filo. 2
+Ten. 7 ha sido liberado por filo. 6
+Ten. 7 ha sido cogido por filo. 8
+Filósofo 6 suelta ten. izq. 7
+Filósofo 6 suelta ten. der. 5
+Filósofo 8 comienza a comer
+Ten. 5 ha sido liberado por filo. 6
+Filosofo 6 comienza a pensar
+Filósofo 0 solicita ten. der.9
+Filósofo 4 solicita ten. izq.5
+Filósofo 4 solicita ten. der.3
+Ten. 5 ha sido cogido por filo. 4
+Ten. 3 ha sido liberado por filo. 2
+Filósofo 2 suelta ten. izq. 3
+Filósofo 2 suelta ten. der. 1
+Filosofo 2 comienza a pensar

@@ -1,0 +1,2 @@
+	
+	La razon por la cual con multiples productores hay que usar while , mientras que en la version de un solo prod/cons podemos usar un if es debido a que hay multiples hebras las cuales ejecutan un codigo que pueden cambiar la condicion que tienen los if y el while permite que todas las hebras tenga sincronizada esa condicion.

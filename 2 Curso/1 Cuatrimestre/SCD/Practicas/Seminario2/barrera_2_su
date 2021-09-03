@@ -1,0 +1,3 @@
+
+	El último proceso hace todos los signals. Entre cada dos de ellos, espera en la cola de urgentes a que el señalado abandone el monitor. Los procesos del siguiente grupo esperan en la cola del monitor hasta que todos los señalados lo abandonen y el último ponga el contador acero. De esto podemos sacar que cuando usamos la semántica SU
+,los procesos se van controlando y llevando a la cola de urgentes, sin que haya complicaciones al entrar grupos de procesos a la vez.

@@ -1,0 +1,26 @@
+1ºProblema de Sincronizacion:
+
+Es necesario resolver el problema de sincronizacion a la hora de entrar en el vector y aumentar y decrementar el valor
+de la variable global solo en la solución LIFO ya que podrian cambiar erroneamente el valor de la variable global y deshechar algun dato del vector. En la solucion FIFO no es necesario ya que solo va a haber una posibilidad en la que los
+procesos apunten a una misma posicion del vector, la cual es 0 y en ese caso solo puede continuar el proceso de producir.
+
+He resuelto el problema mediante el uso de un semaforo de exclusion mutua.
+
+2º
+
+Al usar la solucion LIFO, la variable necesaria es la de primera_libre, determinando la posicion del vector siguiente al contenido del vector, por eso una hebra produce un valor y aumenta primera_libre para decir que la siguiente posicion del vector esta vacia, la otra hebra la decrementa ya que le indica una posicion donde no hay valor que consumir, y al decrementarlo, se pone en la posicion del ultimo valor util del vector.
+
+3º
+
+Son necesarios 3 semaforos, 2 de ellos son para resolver el problema de consumir, producir , llamados libres y ocupadas, el primero inicializado con el tamaño del vector y el segundo a 0, y el 3 semaforo llamado exclusion_mutua, inicializado a 1, es necesario para evitar los problemas de sincronizacion especificados en el apartado 1º de este documento.
+
+sem_wait: libres: principio de la hebra productora
+	  ocupadas: principio de la hebra consumidora
+	  exclusion mutua: antes de la parte de las hebras donde se asigna y se incrementa/decrementa la var compartida
+ 
+sem_signal: libres: final de la hebra consumidora
+	    ocupadas: final de la hebra productora
+	    exclusion_mutua: despues de la parte de las hebreas donde se asigna y se incrementa/decrementa la var compartida
+
+
+

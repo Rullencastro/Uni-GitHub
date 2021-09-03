@@ -1,0 +1,75 @@
+
+	1.
+
+He decidido el usar 3 variables de condicion para realizar este programa llamadas barbero, silla_pelar, sala_espera
+
+	2.
+
+barbero: 
+
+	La condicion asociada es que haya no hay nadie en la silla de pelar ni en la sala de espera.En caso de no haberlo realiza un wait, en la funcion del monitor siguienteClase la cual mira esas dos condiciones. El signal se realiza en la funcion de cortarPelo, en donde el cliente que entra a la barberia, si no hay nadie en la silla de pelar, y si hay gente en la sala de espera o es el primero que entra, es cuando el barbero se activa. Los signal son realizadas por las hebras que usan la funcion_cliente, y los wait son realizadas por las hebra del barbero
+
+silla_pelar:
+
+	La condicion asociada es que haya alguien en la silla. Se realiza un wait cuando hay alguien pelandose, es decir en la silla, y se encuentra en la funcion del monitor de cortarPelo. Los signal son realizados en la funcion del monitor llamada finCliente , y se realiza porque el barbero ha terminado de pelar. Los wait son realizados por la hebra del barbero y los signal son ejecutados por las hebras que ejecutan la funcion_cliente.
+
+sala_espera:
+
+	La condicion asociada es que haya clientes para esperar en la sala de espera. realiza un wait cuando llega un cliente y la silla_pelar esta ocupada en la funcion cortarPelo, los signals se realizan cuando el barbero termina de pelar y llama al siguiente si lo hay en la sala de espera en la funcion siguienteCliente. Los waits son realizados por las hebras que ejecutan la funcion_cliente y los signal por la hebra del barbero.
+
+
+	3.PSEUDO-CÓDIGO de las funciones del monitor.
+
+	process cortarPelo [i : 0..9];
+	begin
+		if !silla_pelar.empty() then
+		sala_espera.wait();
+		end
+		barbero.signal();
+		silla_pelar.signal();
+	end
+
+
+	process siguienteCliente;
+	begin
+		if silla_pelar.empty() then
+			if sala_espera.empty() then
+			barbero.wait();
+			else
+			sala_espera.signal();
+			end
+		end
+	end
+
+
+	process finCliente();
+	begin
+		silla_pelar.signal();
+	end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

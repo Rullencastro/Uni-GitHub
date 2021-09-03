@@ -1,0 +1,54 @@
+1.
+
+Nombre de los semaforos:
+
+-mostr_vacio
+-ingr_disp
+
+Utilidad:
+
+mostr_vacio: Sirve para saber cuando el estanquero debe realizar la funcion de poner un ingrediente en el mostrador.
+
+ingr_disp: Vector de semaforos que nos sirve para saber cuando esta disponible en el mostrador,
+el ingrediente i, el cual necesita el fumador numero i.
+
+Valor inicial:
+
+mostr_vacio = 1 ya que el mostrador empieza vacio,
+
+ingr_disp: Vector de tamaño 3 con todos los valores a 0 inicialmente ya que no hay ningun 
+ingrediente en el mostrador.
+
+Hebras que hacen wait y signal:
+
+-hebra_estanquera
+-hebra_fumadora_0	
+-hebra_fumadora_1
+-hebra_fumadora_2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
