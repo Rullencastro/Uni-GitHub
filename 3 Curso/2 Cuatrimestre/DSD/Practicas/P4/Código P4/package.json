@@ -10,7 +10,6 @@
   "author": "Raul Castro",
   "license": "ISC",
   "dependencies": {
-    "nodemailer": "^6.6.1",
-    "request": "^2.88.2"
+    "nodemailer": "^6.6.1"
   }
 }
